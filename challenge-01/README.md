@@ -1,42 +1,39 @@
-# Desafio Semana #1
+server {
+    listen         80;
+    server_name .algomais.com;
+    return 301 https://$host$request_uri;
+}
 
-```js
-// Declarar uma variável chamada `myvar`, sem valor.
-?
+server {
+    listen 80;
+    listen [::]:80;
+    server_name revista.algomais.com;
 
-// Após declarada, atribua o valor 10 à variável `myvar`.
-?
+    return 301 https://algomais.com$request_uri;
+}
 
-// Declare uma nova variável chamada `soma`, e adicione uma instrução somando os valores 15 e 8.
-?
+server {
+# Document Root
+root /var/www/html;
+index index.php index.html index.htm;
+server_name .algomais.com;
+client_max_body_size 0;
 
-// Atribua à variável `soma` todo o valor dela, somando 1, usando o operador de soma abreviado.
-?
+set_real_ip_from 0.0.0.0/0;
+set_real_ip_from ::/0;
+real_ip_header X-Forwarded-For;
 
-// Atribua à variável `soma` todo o valor dela, multiplicando por 3, usando o operador de multiplicação abreviado.
-?
+    listen [::]:443 ssl http2 ipv6only=on;
+    listen 443 ssl http2;
+        ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+        ssl_certificate /etc/letsencrypt/live/algomais.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/algomais.com/privkey.pem;
+        ssl_prefer_server_ciphers on;
+        ssl_session_cache   shared:SSL:20m;
+        ssl_session_timeout 20m;
+        ssl_ciphers 'TLS13+AESGCM+AES128:EECDH+AES128';
 
-// Qual é o valor da variável `soma` até aqui?
-?
 
-// Declare uma variável chamada `souninja`, atribuindo à ela o valor booleano que representa `verdadeiro`.
-?
+error_page 404 /404.html;
+error_page 500 502 503 504 /50x.html;
 
-// Declare uma variável chamada `comida` que recebe um array com os valores 'arroz', 'feijão' e 'ovo'.
-?
-
-// Digite a instrução que imprime o valor de 'feijao', que está na variável `comida`.
-?
-
-// Digite o código que verifica se a variável `soma' é igual a variável `myvar` (testando também o tipo).
-?
-
-// Digite o código que verifica se a variável `myvar` é menor ou igual à variável `soma`.
-?
-
-// Crie uma função chamada `divisao` que receba como parâmetro dois números, e retorne o resultado da divisão entre eles.
-?
-
-// Invoque a função criada acima, passando os parâmetros 10 e 2.
-?
-```
